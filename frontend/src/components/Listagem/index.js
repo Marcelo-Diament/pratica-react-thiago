@@ -22,7 +22,12 @@ const ListagemDeProdutos = () => {
               <img alt={produto.nome} src={produto.foto} />
               <h4>{produto.nome}</h4>
               <p className="descricao">{produto.descricao}</p>
-              <p className="preco">{produto.preco}</p>
+              <p className="preco">
+                {produto.preco.toLocaleString("pt-BR", {
+                  style: "currency",
+                  currency: "BRL",
+                })}
+              </p>
               <button>Comprar</button>
             </Card>
           );
