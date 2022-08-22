@@ -1,8 +1,8 @@
-const fs = require('fs');
-const path = require('path');
-const { randomUUID } = require('crypto');
+const fs = require("fs");
+const path = require("path");
+const { randomUUID } = require("crypto");
 
-const produtos = require('../database/produtos.json');
+const produtos = require("../database/produtos.json");
 
 module.exports = {
   create(req, res) {
@@ -15,14 +15,17 @@ module.exports = {
       preco,
       foto,
     });
-    fs.writeFileSync(path.join(__dirname, '../database/produtos.json'), JSON.stringify(produtos));
+    fs.writeFileSync(
+      path.join(__dirname, "../database/produtos.json"),
+      JSON.stringify(produtos)
+    );
 
     res.status(201).send();
   },
 
   find(req, res) {
-    const { id } = req.params
-    const produto = produtos.find(produto => produto.id === id);
+    const { id } = req.params;
+    const produto = produtos.find((produto) => produto.id === id);
 
     res.json(produto);
   },
@@ -36,7 +39,7 @@ module.exports = {
 
     let produtoAtualizado = {};
 
-    const listaAtualizada = produtos.map(produto => {
+    const listaAtualizada = produtos.map((produto) => {
       if (produto.id === id) {
         produtoAtualizado = { ...produto, ...req.body };
         return produtoAtualizado;
@@ -45,7 +48,10 @@ module.exports = {
       return produto;
     });
 
-    fs.writeFileSync(path.join(__dirname, '../database/produtos.json'), JSON.stringify(listaAtualizada));
+    fs.writeFileSync(
+      path.join(__dirname, "../database/produtos.json"),
+      JSON.stringify(listaAtualizada)
+    );
 
     res.send(produtoAtualizado);
   },
@@ -53,10 +59,13 @@ module.exports = {
   delete(req, res) {
     const { id } = req.params;
 
-    const filtered = produtos.filter(produto => !(produto.id === id));
+    const filtered = produtos.filter((produto) => !(produto.id === id));
 
-    fs.writeFileSync(path.join(__dirname, '../database/produtos.json'), JSON.stringify(filtered));
+    fs.writeFileSync(
+      path.join(__dirname, "../database/produtos.json"),
+      JSON.stringify(filtered)
+    );
 
     res.send();
-  }
-}
+  },
+};
