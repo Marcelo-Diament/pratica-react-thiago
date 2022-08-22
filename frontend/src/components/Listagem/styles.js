@@ -10,6 +10,11 @@ export const ListaDeProdutos = styled.ul`
 export const Card = styled.li`
   font-size: 18px;
 
+  :hover {
+    background-color: #f5f5f5;
+    cursor: pointer;
+  }
+
   img {
     max-height: 200px;
     width: 100%;
