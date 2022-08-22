@@ -1,8 +1,9 @@
+import { ListaDeProdutos } from "./styles";
 const ListagemDeProdutos = () => {
   return (
     <main>
       <h3>Produtos</h3>
-      <ul>
+      <ListaDeProdutos>
         <li>
           <img
             alt="Fone de Ouvido"
@@ -163,7 +164,7 @@ const ListagemDeProdutos = () => {
           <p>R$ 70,00</p>
           <button>Comprar</button>
         </li>
-      </ul>
+      </ListaDeProdutos>
     </main>
   );
 };
