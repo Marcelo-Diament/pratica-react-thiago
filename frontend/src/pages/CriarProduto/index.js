@@ -1,17 +1,18 @@
 import { useState, useRef } from "react";
+import axios from "axios";
 import Header from "../../components/Header";
 import { Form, InputBlock } from "./styles";
 
 function CriarProduto() {
-  const [nome, setNome] = useState("nome do produto");
-  const [descricao, setDescricao] = useState("descricao do produto");
-  const [preco, setPreco] = useState("preco do produto");
-  const [estoque, setEstoque] = useState("estoque do produto");
-  const [foto, setFoto] = useState("foto do produto");
+  const [nome, setNome] = useState(null);
+  const [descricao, setDescricao] = useState(null);
+  const [preco, setPreco] = useState(null);
+  const [estoque, setEstoque] = useState(null);
+  const [foto, setFoto] = useState(null);
 
   const fotoRef = useRef(null);
 
-  const cadastrar = (event) => {
+  const cadastrar = async (event) => {
     event.preventDefault();
     console.log({
       nome,
@@ -20,6 +21,13 @@ function CriarProduto() {
       estoque,
       foto,
       fotoRef: fotoRef.current.value,
+    });
+    await axios.post("http://localhost:8000/produtos", {
+      nome,
+      descricao,
+      preco,
+      estoque,
+      foto: fotoRef.current.value,
     });
   };
   return (
