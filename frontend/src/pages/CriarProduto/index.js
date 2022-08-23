@@ -1,5 +1,5 @@
 import { useState, useRef } from "react";
-import axios from "axios";
+import api from "../../services/api";
 import Header from "../../components/Header";
 import { Form, InputBlock } from "./styles";
 
@@ -22,7 +22,7 @@ function CriarProduto() {
       foto,
       fotoRef: fotoRef.current.value,
     });
-    await axios.post("http://localhost:8000/produtos", {
+    await api.post("/produtos", {
       nome,
       descricao,
       preco,

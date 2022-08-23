@@ -1,11 +1,11 @@
 import { useState, useEffect } from "react";
-import axios from "axios";
+import api from "../../services/api";
 import { ListaDeProdutos, Card } from "./styles";
 const ListagemDeProdutos = () => {
   const [produtos, setProdutos] = useState([]);
 
   const buscarProdutos = async () => {
-    const { data } = await axios.get("http://localhost:8000/produtos");
+    const { data } = await api.get("/produtos");
     setProdutos(data);
   };
   useEffect(() => {
